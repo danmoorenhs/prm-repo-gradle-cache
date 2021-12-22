@@ -1,0 +1,19 @@
+format_version: 3
+pipelines:
+  gradle-cache:
+    group: repo-team
+    label_template: "${COUNT}-${git[:8]}"
+    materials:
+      git:
+        type: configrepo
+    stages:
+      - build-cache-on-an-agent:
+          tasks:
+            - exec:
+                command: ./build_cache.sh
+      - build-cache-on-all-agents:
+          approval: manual
+          run_instances: all
+          tasks:
+            - exec:
+                command: ./build_cache.sh
