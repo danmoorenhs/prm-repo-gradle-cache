@@ -11,6 +11,15 @@ pipelines:
           tasks:
             - exec:
                 command: ./build_cache.sh
+          tasks:
+            - exec:
+                command: pwd
+          tasks:
+            - exec:
+                command: ls
+                arguments:
+                  - "-ltr"
+                  - .gradle-readonly-cache
       - build-cache-on-all-agents:
           approval: manual
           run_instances: all
