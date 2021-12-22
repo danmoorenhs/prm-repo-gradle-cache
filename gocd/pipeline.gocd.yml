@@ -8,6 +8,7 @@ pipelines:
         type: configrepo
     stages:
       - build-cache-on-an-agent:
+          approval: manual
           tasks:
             - exec:
                 command: ./build_cache.sh
